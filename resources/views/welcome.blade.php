@@ -1,45 +1,30 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Banana</title>
+	<link rel="stylesheet" href="/static/css/vendor/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/static/css/haircvt.css"/>
+</head>
+<body>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+	<div class="container-fluid header">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="">
+					<img src="/static/img/logo.png" alt="HAIRCVT"/>
+				</a>
+			</div>
+		</nav>
+	</div>
+	<div class="container">
+		<div class="row main-content">
+			<div class="col-xs-12">
+				<h1>Content here!</h1>
+			</div>
+		</div>
+	</div>
 
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
-        </div>
-    </body>
+	<script src="/static/js/vendor/jquery-2.1.1.min.js"></script>
+</body>
 </html>

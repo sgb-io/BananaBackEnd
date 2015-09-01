@@ -1,0 +1,92 @@
+body {
+margin-top: 30px;
+text-align: center;
+font-family: "GT Walsheim", "Helvetica Neue", "Helvetica", "Arial";
+background: #efefef; }
+body > .container {
+  margin-top: 95px; }
+  body > .container .main-content {
+    padding: 0px;
+    margin-bottom: 20px; }
+  body > .container.admin {
+    max-width: 1170px; }
+.header {
+  position: absolute;
+  top: 0;
+  z-index: 15;
+  left: 0;
+  background: #181818;
+  text-align: center;
+  height: 60px;
+  width: 100%; }
+  .header > a {
+    display: block;
+    overflow: hidden; }
+  .header img {
+    display: block;
+    margin: 3px auto; }
+  .header .navbar-right {
+    min-height: 60px; }
+    .header .navbar-right li {
+      height: 100%; }
+      .header .navbar-right li.border-right {
+        border-right: 1px solid #333; }
+      .header .navbar-right li a {
+        color: #fff; }
+        .header .navbar-right li a:hover {
+          color: #666; }
+    .header .navbar-right a {
+      font-size: 13px;
+      line-height: 30px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      padding-left: 30px;
+      padding-right: 30px; }
+      .header .navbar-right a:hover {
+        background: none; }
+  .navbar-header .navbar-brand img {
+    width: 136px;
+    height: 22px;
+  }
+  .navbar-default {
+background-color: #181818;
+border: none;
+margin-bottom: 0;
+margin-left: -15px;
+margin-right: -15px;
+border-top: 1px solid #333;
+border-radius: 0; }
+.navbar-default .navbar-nav .dropdown-menu {
+  background: #181818; }
+.navbar-default .navbar-nav li a {
+  line-height: 30px;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
+  .navbar-default .navbar-nav li a:hover {
+    color: #666; }
+.navbar-default .navbar-nav li.bg-danger {
+  background: #760000; }
+.navbar-default .navbar-brand {
+  display: block;
+  overflow: hidden;
+  border-right: 1px solid #333;
+  height: 100%;
+  padding-bottom: 17px;
+  padding-left: 30px;
+  padding-right: 30px; }
+.navbar-default .social-links-container {
+  width: 125px; }
+.navbar-default .social-links {
+  margin: 0;
+  padding: 20px 0;
+  line-height: 15px; }
+  .navbar-default .social-links li {
+    display: inline-block;
+    padding: 0 5px; }
+    .navbar-default .social-links li a {
+      padding: 0;
+      display: block; }
