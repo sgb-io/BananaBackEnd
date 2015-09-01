@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/orders', ['uses' => 'OrderController@index']);
+Route::post('/orders', ['uses' => 'OrderController@store']);
+Route::get('/orders/{id}', ['uses' => 'OrderController@show']);
+Route::put('/orders/{id}', ['uses' => 'OrderController@update']);
+Route::delete('/orders/{id}', ['uses' => 'OrderController@destroy']);
+
+Route::get('/sweeties', ['uses' => 'SweetyController@index']);
+Route::post('/sweeties', ['uses' => 'SweetyController@store']);
+Route::get('/sweeties/{id}', ['uses' => 'SweetyController@show']);
+Route::put('/sweeties/{id}', ['uses' => 'SweetyController@update']);
+Route::delete('/sweeties/{id}', ['uses' => 'SweetyController@destroy']);
