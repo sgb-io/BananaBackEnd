@@ -48,9 +48,17 @@ bananaApp.controller('SweetyListCtrl', function($scope, $http, basketService) {
   $http.get('/sweeties').success(function(data) {
     $scope.sweeties = data;
   });
+  $scope.filters = ['all', 'fruit', 'dinner', 'snack', 'daytime'];
+  $scope.selectedFilter = 'all';
   $scope.addToBasket = function(item) {
     basketService.addItem(item);
     basketService.updateTotal();
+  }
+  $scope.changeFilter = function(filter) {
+    $scope.selectedFilter = filter;
+    $http.get('/sweeties?type='+filter).success(function(data) {
+      $scope.sweeties = data;
+    });
   }
 });
 

@@ -20,9 +20,27 @@
 			</div>
 		</nav>
 	</div>
+
 	<div class="container">
 		<div class="row main-content text-left">
-			<div class="col-xs-8" ng-controller="SweetyListCtrl">
+			<div class="col-xs-8">
+				<h3>Filter</h3>
+			</div>
+			<div class="col-xs-4">
+				<h3>Basket</h3>
+			</div>
+		</div>
+
+		<div class="row main-content text-left" ng-controller="SweetyListCtrl">
+
+			<div class="col-xs-8">
+				<select class="form-control" ng-model="selectedFilter" ng-change="changeFilter(selectedFilter)">
+					<option ng-repeat="filter in filters" value="<% filter %>"><% filter %></option>
+				</select>
+				<!-- <select class="form-control" ng-model="filters" ng-options="filter for filter in filter"></select> -->
+			</div>
+
+			<div class="col-xs-8">
 				<table class="table table-bordered table-striped">
 					<thead>
 						<th>Name</th>
@@ -42,7 +60,6 @@
 			</div>
 
 			<div class="col-xs-4" ng-controller="BasketCtrl">
-				<h3>Basket</h3>
 				<table class="table table-bordered table-striped">
 					<thead>
 						<th>Service</th>
