@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="/static/css/vendor/bootstrap.min.css"/>
   <link rel="stylesheet" href="/static/css/haircvt.css"/>
 	<script src="/static/js/vendor/angular.js"></script>
+	<script src="/static/js/vendor/underscore-min.js"></script>
 	<script src="/static/js/controllers.js"></script>
 </head>
 <body>
@@ -34,19 +35,33 @@
 							<td><% sweet.name %></td>
 							<td><% sweet.type %></td>
 							<td><% sweet.price %></td>
-							<td><a href="" class="btn btn-xs btn-primary">Add</a></td>
+							<td><a href="#" class="btn btn-xs btn-primary" ng-click="addToBasket(sweet)">Add</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="col-xs-4">
+
+			<div class="col-xs-4" ng-controller="BasketCtrl">
 				<h3>Basket</h3>
 				<table class="table table-bordered table-striped">
 					<thead>
 						<th>Service</th>
 						<th>Price</th>
+						<th>Quantity</th>
 					</thead>
 					<tbody>
+						<tr ng-repeat="item in items">
+							<td><% item.name %></td>
+							<td><% item.price %></td>
+							<td><% item.quantity %></td>
+						</tr>
+						<tr>
+							<td><strong>Total</strong></td>
+							<td>
+								<span><strong><% basketService.total %></strong></span>
+							</td>
+							<td></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
