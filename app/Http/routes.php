@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function() {
+   return View::make('index');
+});
+
 Route::get('/orders', ['uses' => 'OrderController@index']);
 Route::post('/orders', ['uses' => 'OrderController@store']);
 Route::get('/orders/{id}', ['uses' => 'OrderController@show']);
