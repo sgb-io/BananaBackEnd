@@ -22,10 +22,9 @@ class OrderSeeder extends Seeder
         [$sweeties->random(), $sweeties->random()],
         [$sweeties->random(), $sweeties->random()],
       ];
-
       foreach ($orders as $order) {
         $newOrder = new App\Order;
-        $newOrder->setTotal($order[0]->price + $order[1]->price);
+        $newOrder->total = $order[0]->price + $order[1]->price;
         $newOrder->save();
         foreach ($order as $sweety) {
           $newOrder->sweeties()->attach(App\Sweety::findOrFail($sweety->id));

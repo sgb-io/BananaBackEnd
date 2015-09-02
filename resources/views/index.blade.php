@@ -20,14 +20,35 @@
 		</nav>
 	</div>
 	<div class="container">
-		<div class="row main-content">
-			<div class="col-xs-12" ng-controller="SweetyListCtrl">
-				<ul>
-					<li ng-repeat="sweet in sweeties">
-						<span><% sweet.name %></span>
-						<p><% sweet.type %> - <% sweet.price %></p>
-					</li>
-				</ul>
+		<div class="row main-content text-left">
+			<div class="col-xs-8" ng-controller="SweetyListCtrl">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Price</th>
+						<th>Buy</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="sweet in sweeties">
+							<td><% sweet.name %></td>
+							<td><% sweet.type %></td>
+							<td><% sweet.price %></td>
+							<td><a href="" class="btn btn-xs btn-primary">Add</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-4">
+				<h3>Basket</h3>
+				<table class="table table-bordered table-striped">
+					<thead>
+						<th>Service</th>
+						<th>Price</th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
