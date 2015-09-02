@@ -11,14 +11,24 @@ use Illuminate\Http\Response;
 
 class SweetyController extends Controller
 {
+    private $sweetyFilters = [
+        'all' => ['fruit', 'dinner', 'snack'],
+        'fruit' => ['fruit'],
+        'dinner' => ['dinner'],
+        'snack' => ['snack'],
+        'daytime' => ['fruit', 'snack']
+    ];
+
     /**
      * Display a listing of the resource.
+     * @param type The type of sweet to filter by: all/fruit/dinner/snack/daytime
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return JsonResponse::create(Sweety::all());
+        $permittedType = ($request->has('type')) ? $this->sweetyFilters[$request->input('type')] : $this->sweetyFilters['all'];
+        return JsonResponse::create(Sweety::whereIn('type', $permittedType)->get());
     }
 
     /**

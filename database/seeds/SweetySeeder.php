@@ -15,37 +15,45 @@ class SweetySeeder extends Seeder
       $sweets = [
         [
           'name' => 'Apple',
-          'price' => 14.5
+          'price' => 14.5,
+          'type' => 'fruit'
         ],
         [
           'name' => 'Banana',
-          'price' => 21
+          'price' => 21,
+          'type' => 'fruit'
         ],
         [
           'name' => 'Orange',
-          'price' => 7.5
+          'price' => 7.5,
+          'type' => 'fruit'
         ],
         [
           'name' => 'Chocolate',
-          'price' => 8.2
+          'price' => 8.2,
+          'type' => 'snack'
         ],
         [
           'name' => 'Pizza',
-          'price' => 22.5
+          'price' => 22.5,
+          'type' => 'dinner'
         ],
         [
           'name' => 'Steak',
-          'price' => 25.8
+          'price' => 25.8,
+          'type' => 'dinner'
         ],
         [
           'name' => 'Burger',
-          'price' => 13
+          'price' => 13,
+          'type' => 'dinner'
         ]
       ];
       foreach ($sweets as $sweet) {
         $sweety = new App\Sweety([
           'name' => $sweet['name'],
-          'price' => $sweet['price']
+          'price' => $sweet['price'],
+          'type' => $sweet['type']
         ]);
         $sweety->save();
       }
