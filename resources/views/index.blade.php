@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="bananaApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Banana</title>
 	<link rel="stylesheet" href="/static/css/vendor/bootstrap.min.css"/>
   <link rel="stylesheet" href="/static/css/haircvt.css"/>
+	<script src="/static/js/vendor/angular.js"></script>
+	<script src="/static/js/controllers.js"></script>
 </head>
 <body>
 
@@ -19,8 +21,13 @@
 	</div>
 	<div class="container">
 		<div class="row main-content">
-			<div class="col-xs-12">
-				<h1>Content here!</h1>
+			<div class="col-xs-12" ng-controller="SweetyListCtrl">
+				<ul>
+					<li ng-repeat="sweet in sweeties">
+						<span><% sweet.name %></span>
+						<p><% sweet.type %> - <% sweet.price %></p>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
