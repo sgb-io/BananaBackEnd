@@ -58,7 +58,7 @@
 						<tr>
 							<td><strong>Total</strong></td>
 							<td>
-								<span><strong><% basketService.total %></strong></span>
+								<span><strong><% basketService.formattedTotal() %></strong></span>
 							</td>
 							<td></td>
 						</tr>

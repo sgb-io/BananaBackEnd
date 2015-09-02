@@ -9,11 +9,14 @@ bananaApp.config(function($interpolateProvider) {
   $interpolateProvider.endSymbol('%>');
 });
 
-bananaApp.service('basketService', function() {
+bananaApp.service('basketService', function($filter) {
 
   var self = this;
   self.selectedServices = [];
   self.total = 0;
+  self.formattedTotal = function() {
+    return '£' + self.total.toFixed(2);
+  };
 
   this.getItems = function() {
     return self.selectedServices;
@@ -39,9 +42,6 @@ bananaApp.service('basketService', function() {
     });
     self.total = total;
   }
-  this.getTotal = function() {
-    return self.total;
-  }
 });
 
 bananaApp.controller('SweetyListCtrl', function($scope, $http, basketService) {
@@ -56,6 +56,5 @@ bananaApp.controller('SweetyListCtrl', function($scope, $http, basketService) {
 
 bananaApp.controller('BasketCtrl', function($scope, $http, basketService) {
   $scope.items = basketService.getItems();
-  $scope.total = basketService.getTotal();
   $scope.basketService = basketService;
 });
