@@ -14,8 +14,67 @@ $(function(){
   });
 
   var ItemCollection = Backbone.Collection.extend({
+    items: [],
+    total: 0,
+
+    addItem: function(item) {
+      var self = this;
+      var matches = _.where(self.items, { 'id' : item.id });
+      if (matches.length > 0) {
+        var existing = matches[0];
+        existing.quantity++;
+      } else {
+        item.quantity = 1;
+        self.items.push(item);
+      }
+      return self;
+    },
+
+    removeItem: function(target) {
+      var self = this;
+      self.items = _.reject(self.items, function(item) {
+        return item.id === target.id;
+      });
+    },
+
     formattedTotal: function() {
-      return '£100.00';
+      var self = this;
+      var total = 0.0;
+      self.items.forEach(function(item) {
+        total += (parseFloat(item.price) * parseInt(item.quantity));
+      });
+      self.total = total;
+    }
+  });
+
+  var BasketView = Backbone.View.extend({
+    //el: $('#basket'),
+    //tagName: 'div',
+
+    template: _.template($('#basket-template').html()),
+
+    initialize: function() {
+      var self = this;
+      self.items = new ItemCollection;
+    },
+
+    render: function() {
+      var self = this;
+      console.log(self.items);
+      var html = self.template({
+        'formattedTotal': self.items.formattedTotal(),
+        'items': self.items.toJSON()
+      });
+      // self.$el is unreachable?
+      //console.log(self.$el.html());
+      self.$el.html(html);
+      //$(self.$el).html(html);
+    },
+
+    addItem: function(item) {
+      var self = this;
+      self.items = self.items.addItem(item);
+      self.render();
     }
   });
 
@@ -25,7 +84,8 @@ $(function(){
     template: _.template($('#sweety-template').html()),
 
     events: {
-      'change .select-filter': 'changeFilter'
+      'change .select-filter': 'changeFilter',
+      'click .add-button': 'addItem'
     },
 
     selectedFilter: 'all',
@@ -35,7 +95,7 @@ $(function(){
       self.router = new Router;
 
       self.sweeties = new SweetyCollection;
-      self.items = new ItemCollection;
+      self.basket = new BasketView;
 
       self.router.on('route:index', function(params) {
         self.getResults(params);
@@ -49,11 +109,12 @@ $(function(){
       var html = self.template({
         'sweeties': self.sweeties.toJSON(),
         'filters': ['all', 'fruit', 'dinner', 'snack', 'daytime'],
-        'selectedFilter': self.selectedFilter,
-        'formattedTotal': self.items.formattedTotal(),
-        'items': self.items.toJSON()
+        'selectedFilter': self.selectedFilter
       });
       $(self.el).html(html);
+
+      // render children
+      self.$('#basket').html(self.basket.render());
     },
 
     changeFilter: function(ele) {
@@ -74,6 +135,14 @@ $(function(){
           self.render();
         }
       });
+    },
+
+    addItem: function(event) {
+      event.preventDefault();
+      var self = this;
+      var sweetId = $(event.target).attr('data-sweet-id');
+      var selectedSweet = _.where(self.sweeties.toJSON(), { 'id' : sweetId })[0];
+      self.basket.addItem(selectedSweet);
     }
   });
 

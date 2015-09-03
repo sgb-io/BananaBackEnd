@@ -60,37 +60,39 @@
 						<td><%= sweet.name %></td>
 						<td><%= sweet.type %></td>
 						<td><%= sweet.price %></td>
-						<td><a href="" class="btn btn-xs btn-primary">Add</a></td>
+						<td><a href="" class="btn btn-xs btn-primary add-button" data-sweet-id="<%= sweet.id %>">Add</a></td>
 					</tr>
 					<% }); %>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-xs-4" ng-controller="BasketCtrl">
-			<table class="table table-bordered table-striped">
-				<thead>
-					<th>Service</th>
-					<th>Price</th>
-					<th>Quantity</th>
-				</thead>
-				<tbody>
-					<% _.each(items, function(item) { %>
-					<tr>
-						<td><% item.name %></td>
-						<td><% item.price %></td>
-						<td><% item.quantity %></td>
-					</tr>
-					<% }); %>
-					<tr>
-						<td><strong>Total</strong></td>
-						<td>
-							<span><strong><%= formattedTotal %></strong></span>
-						</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<div class="col-xs-4" id="basket"></div>
+	</script>
+
+	<script id="basket-template" type="text/template">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<th>Service</th>
+				<th>Price</th>
+				<th>Quantity</th>
+			</thead>
+			<tbody>
+				<% _.each(items, function(item) { %>
+				<tr>
+					<td><% item.name %></td>
+					<td><% item.price %></td>
+					<td><% item.quantity %></td>
+				</tr>
+				<% }); %>
+				<tr>
+					<td><strong>Total</strong></td>
+					<td>
+						<span><strong><%= formattedTotal %></strong></span>
+					</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
 	</script>
 
 </body>
