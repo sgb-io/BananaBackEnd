@@ -67,9 +67,6 @@ bananaApp.controller('SweetyListCtrl', function($scope, $http, $routeParams, $lo
   $scope.changeFilter = function(filter) {
     $scope.selectedFilter = filter;
     $location.search('type', filter);
-    $http.get('/sweeties?type='+filter).success(function(data) {
-      $scope.sweeties = data;
-    });
   }
 });
 
