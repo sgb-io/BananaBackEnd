@@ -2,14 +2,22 @@
 
 /* Controllers */
 
-var bananaApp = angular.module('bananaApp', []);
+var bananaApp = angular.module('bananaApp', ['ngRoute']);
 
-bananaApp.config(function($interpolateProvider) {
+bananaApp.config(function($interpolateProvider, $routeProvider, $locationProvider) {
   $interpolateProvider.startSymbol('<%');
   $interpolateProvider.endSymbol('%>');
+
+  $routeProvider
+   .when('/', {
+    templateUrl: '/templates/sweeties.html',
+    controller: 'SweetyListCtrl'
+  })
+
+  $locationProvider.html5Mode(true);
 });
 
-bananaApp.service('basketService', function($filter) {
+bananaApp.service('basketService', function() {
 
   var self = this;
   self.selectedServices = [];
@@ -44,18 +52,21 @@ bananaApp.service('basketService', function($filter) {
   }
 });
 
-bananaApp.controller('SweetyListCtrl', function($scope, $http, basketService) {
-  $http.get('/sweeties').success(function(data) {
+bananaApp.controller('SweetyListCtrl', function($scope, $http, $routeParams, $location, basketService) {
+  $scope.filters = ['all', 'fruit', 'dinner', 'snack', 'daytime'];
+  $scope.selectedFilter = $routeParams.type || 'all';
+
+  $http.get('/sweeties?type='+$scope.selectedFilter).success(function(data) {
     $scope.sweeties = data;
   });
-  $scope.filters = ['all', 'fruit', 'dinner', 'snack', 'daytime'];
-  $scope.selectedFilter = 'all';
+
   $scope.addToBasket = function(item) {
     basketService.addItem(item);
     basketService.updateTotal();
   }
   $scope.changeFilter = function(filter) {
     $scope.selectedFilter = filter;
+    $location.search('type', filter);
     $http.get('/sweeties?type='+filter).success(function(data) {
       $scope.sweeties = data;
     });

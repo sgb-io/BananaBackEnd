@@ -6,8 +6,10 @@
 	<link rel="stylesheet" href="/static/css/vendor/bootstrap.min.css"/>
   <link rel="stylesheet" href="/static/css/haircvt.css"/>
 	<script src="/static/js/vendor/angular.js"></script>
+	<script src="/static/js/vendor/angular-route.js"></script>
 	<script src="/static/js/vendor/underscore-min.js"></script>
 	<script src="/static/js/controllers.js"></script>
+	<base href="/"/>
 </head>
 <body>
 
@@ -31,58 +33,7 @@
 			</div>
 		</div>
 
-		<div class="row main-content text-left" ng-controller="SweetyListCtrl">
-
-			<div class="col-xs-8">
-				<select class="form-control" ng-model="selectedFilter" ng-change="changeFilter(selectedFilter)">
-					<option ng-repeat="filter in filters" value="<% filter %>"><% filter %></option>
-				</select>
-				<!-- <select class="form-control" ng-model="filters" ng-options="filter for filter in filter"></select> -->
-			</div>
-
-			<div class="col-xs-8">
-				<table class="table table-bordered table-striped">
-					<thead>
-						<th>Name</th>
-						<th>Type</th>
-						<th>Price</th>
-						<th>Buy</th>
-					</thead>
-					<tbody>
-						<tr ng-repeat="sweet in sweeties">
-							<td><% sweet.name %></td>
-							<td><% sweet.type %></td>
-							<td><% sweet.price %></td>
-							<td><a href="#" class="btn btn-xs btn-primary" ng-click="addToBasket(sweet)">Add</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<div class="col-xs-4" ng-controller="BasketCtrl">
-				<table class="table table-bordered table-striped">
-					<thead>
-						<th>Service</th>
-						<th>Price</th>
-						<th>Quantity</th>
-					</thead>
-					<tbody>
-						<tr ng-repeat="item in items">
-							<td><% item.name %></td>
-							<td><% item.price %></td>
-							<td><% item.quantity %></td>
-						</tr>
-						<tr>
-							<td><strong>Total</strong></td>
-							<td>
-								<span><strong><% basketService.formattedTotal() %></strong></span>
-							</td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+		<div ng-view></div>
 	</div>
 
 	<script src="/static/js/vendor/jquery-2.1.1.min.js"></script>
